@@ -24,20 +24,23 @@ var gameInput = document.querySelector("#game-input")
 gameStatusInput.textContent = gameStatus[0];
 startButton.addEventListener("click", theGame);
 
-
+scoreLoss.textContent = "Losses: " + localStorage.getItem("scoreLoss");
 //TIMER FUNCTION
 function gameTime() {
     var timeLeft = 11;
-var timeInterval = setInterval(function(){
     
-timeLeft--;
-countdownTime.textContent = timeLeft + " seconds!";
-
+    var timeInterval = setInterval(function(){
+    
+        timeLeft--;
+        countdownTime.textContent = timeLeft + " seconds!";
+        if (timeLeft === 0) {
+            clearInterval(timeInterval);
+            localStorage.setItem("scoreLoss", scoreLoss++);
+        }
 }, 1000);
-if (timeLeft === 0) {
-    clearInterval(timeInterval);
+
 }
-}
+
 
 //GAME FUNCTION
 function theGame(){
