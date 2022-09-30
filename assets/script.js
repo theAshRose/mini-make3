@@ -23,7 +23,7 @@ var gameInput = document.querySelector("#game-input")
 //STARTING
 gameStatusInput.textContent = gameStatus[0];
 startButton.addEventListener("click", theGame);
-
+localStorage.setItem("scoreLoss", 0);
 scoreLoss.textContent = "Losses: " + localStorage.getItem("scoreLoss");
 //TIMER FUNCTION
 function gameTime() {
@@ -35,7 +35,8 @@ function gameTime() {
         countdownTime.textContent = timeLeft + " seconds!";
         if (timeLeft === 0) {
             clearInterval(timeInterval);
-            localStorage.setItem("scoreLoss", scoreLoss++);
+            localStorage.setItem("scoreLoss", scoreLoss.innerHTML++);
+
         }
 }, 1000);
 
