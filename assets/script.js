@@ -11,15 +11,42 @@
 //timer reset on start button click
 //win/loss counts stored in local storage
 var words = ["globe", "oatmeal", "chili", "petunia", "locomotive"]
-var scoreboard = document.querySelector("#wins-losses")
-var gameText = document.querySelector("#game-text")
+var scoreWin = document.querySelector("#wins")
+var scoreLoss = document.querySelector("#losses")
+//var gameText = document.querySelector("#game-text")
 var countdownTime = document.querySelector("#timer")
 var startButton = document.querySelector("#start")
-var gameStatus = document.getElementById("#game-status")
+var gameStatusInput = document.querySelector("#game-status-input")
+var gameStatus = ["Use keyboard to start guessing!", "Game in progress", "You won!", "You lost!"]
 var gameInput = document.querySelector("#game-input")
 
+//STARTING
+gameStatusInput.textContent = gameStatus[0];
+startButton.addEventListener("click", theGame);
 
-startButton.addEventListener("click")
+
+//TIMER FUNCTION
+function gameTime() {
+    var timeLeft = 11;
+var timeInterval = setInterval(function(){
+    
+timeLeft--;
+countdownTime.textContent = timeLeft + " seconds!";
+
+}, 1000);
+if (timeLeft === 0) {
+    clearInterval(timeInterval);
+}
+}
+
+//GAME FUNCTION
+function theGame(){
+gameTime();
+gameStatusInput.textContent = gameStatus[1];
+
+
+}
+
 //variables:
 //available words for game
 //scoreboard
